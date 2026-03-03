@@ -1,6 +1,6 @@
 bl_info = {
     "name": "Cloudinary AI Upscaler",
-    "author": "You",
+    "author": "N.Coulam",
     "version": (0, 6, 0),
     "blender": (3, 0, 0),
     "location": "Image Editor > N-panel > Cloudinary",
@@ -14,7 +14,7 @@ import subprocess
 import sys
 import urllib.request
 
-# --- Dependencies ---INSTALL AS A PLUGIN THROUGH EXTENSIONS
+# --- Dependencies ---INSTALL AS A PLUGIN THROUGH EXTENSIONS Find it in the Image Panel
 def ensure_cloudinary_installed():
     try:
         import cloudinary
@@ -120,7 +120,7 @@ class CLOUDINARY_OT_process_image(bpy.types.Operator):
             self.report({'ERROR'}, f"Cloudinary error: {str(e)}")
             return {'CANCELLED'}
 
-# --- UI Panel ---Loads into IMAGE Panel find the plugin there
+# --- UI Panel ---
 class CLOUDINARY_PT_panel(bpy.types.Panel):
     bl_label = "Cloudinary AI Tools"
     bl_idname = "CLOUDINARY_PT_panel"
