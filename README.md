@@ -49,6 +49,8 @@ The panel appears in the **Image Editor** sidebar (press **N** to show sidebar â
 
 ## Setup
 
+<img width="447" height="358" alt="image" src="https://github.com/user-attachments/assets/a724f439-7638-457f-814a-dd015bf98f3c" />
+
 1. Go to your Cloudinary dashboard[](https://cloudinary.com/console)  or set one up https://cloudinary.com/
    Copy your **Cloud name**, **API Key**, and **API Secret**
 
