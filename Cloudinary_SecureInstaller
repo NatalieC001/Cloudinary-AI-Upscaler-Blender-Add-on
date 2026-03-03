@@ -1,6 +1,6 @@
 bl_info = {
     "name": "Cloudinary AI Upscaler",
-    "author": "N.Coulam",
+    "author": "CodeCraftCanvas",
     "version": (0, 6, 0),
     "blender": (3, 0, 0),
     "location": "Image Editor > N-panel > Cloudinary",
