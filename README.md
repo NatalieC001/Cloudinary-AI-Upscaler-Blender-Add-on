@@ -9,7 +9,8 @@ Cloudinary_SecureInstaller.py offers a more secure installer -  seprating out th
 
 This add-on adds a simple panel in the **Image Editor** that lets you:
 
-<img width="484" height="360" alt="image" src="https://github.com/user-attachments/assets/64e38433-fcc5-458a-93d8-0a9d9b0a4125" />
+<img width="484" height="331" alt="image" src="https://github.com/user-attachments/assets/dcc03910-60ae-4602-91b6-9064fffef326" />
+
 
 
 - Enter your Cloudinary credentials once
@@ -41,34 +42,38 @@ The add-on automatically installs the `cloudinary` Python package into Blender's
 
 ## Installation
 
-1. Copy the pythonscript into blenter text editor and run it
+<img width="710" height="201" alt="image" src="https://github.com/user-attachments/assets/09790949-9d27-422c-93ba-77941cf2a086" />
+
+1. load the script into plugins
 
 2. In Blender:  
-   Open Text Editor. Click New to create a document.
-   Copy the Python script. Paste the text into the editor window.
-   Click Run Script in the header. This creates the Cloudinary panel in the 3D Viewport.
+   Open Plugins
+   Copy Install and fill in credentials.
+   Go to your Cloudinary dashboard[](https://cloudinary.com/console)  or set one up https://cloudinary.com/
+   Copy your **Cloud name**, **API Key**, and **API Secret**
+   - Paste Cloud Name, API Key, API Secret into fields
 
 ## Setup
 
-<img width="447" height="358" alt="image" src="https://github.com/user-attachments/assets/a724f439-7638-457f-814a-dd015bf98f3c" />
+<img width="484" height="331" alt="image" src="https://github.com/user-attachments/assets/e09c0b28-c946-47d8-8f47-5dbdca681d97" />
 
-1. Go to your Cloudinary dashboard[](https://cloudinary.com/console)  or set one up https://cloudinary.com/
-   Copy your **Cloud name**, **API Key**, and **API Secret**
+
+This creates the Cloudinary panel in the Image Viewport.
+
+<img width="615" height="594" alt="image" src="https://github.com/user-attachments/assets/f91b8a5c-ad7e-4f77-8c35-8c25fdcabb0c" />
 
 2. In Blender → Image Editor → N-panel → **Cloudinary** tab:
-   - Click the eye/lock icon to show credential fields
-   - Paste Cloud Name, API Key, API Secret
-   - Click **Test Connection** (globe icon) to verify
-   - (Optional) hide credentials again with the eye icon
+   - Click **Test Connection** (globe icon) to verify your credentials
+
 
 ## Usage
+find the image you want to alter ( This add-on **requires** the image to exist as a real file on disk not imbedded into the project.  
+Render results, packed images, or unsaved edits in the Image Editor will **not** work unless you first save them to disk.)
 
-<img width="784" height="1168" alt="image" src="https://github.com/user-attachments/assets/2bc7284e-10de-4253-b595-e56ba187b80f" />
+select the size you want the image resized too, its format etc
+
 
 ## Important Notes
-
-- This add-on **requires** the image to exist as a real file on disk not imbedded into the project.  
-  Render results, packed images, or unsaved edits in the Image Editor will **not** work unless you first save them to disk.
 
 - Cloudinary's `e_upscale` effect is used (good for enlarging photos, textures, faces, etc.).  
   No custom size/scale factor is configurable yet — Cloudinary decides the output dimensions.
