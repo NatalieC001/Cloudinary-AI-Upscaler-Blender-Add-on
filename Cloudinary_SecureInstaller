@@ -1,0 +1,165 @@
+bl_info = {
+    "name": "Cloudinary AI Upscaler",
+    "author": "You",
+    "version": (0, 6, 0),
+    "blender": (3, 0, 0),
+    "location": "Image Editor > N-panel > Cloudinary",
+    "description": "Upload image to Cloudinary and upscale with AI",
+    "category": "Image",
+}
+
+import bpy
+import os
+import subprocess
+import sys
+import urllib.request
+
+# --- Dependencies ---INSTALL AS A PLUGIN THROUGH EXTENSIONS
+def ensure_cloudinary_installed():
+    try:
+        import cloudinary
+        return True
+    except ImportError:
+        python_exe = sys.executable
+        try:
+            subprocess.check_call([python_exe, "-m", "pip", "install", "cloudinary"])
+            import cloudinary
+            return True
+        except Exception as e:
+            print(f"Failed to install cloudinary: {e}")
+            return False
+
+_CLOUDINARY_AVAILABLE = ensure_cloudinary_installed()
+
+if _CLOUDINARY_AVAILABLE:
+    import cloudinary
+    import cloudinary.uploader
+    import cloudinary.api
+    from cloudinary.utils import cloudinary_url
+
+# --- Addon Preferences (Secure Storage) ---
+class CloudinaryAddonPreferences(bpy.types.AddonPreferences):
+    bl_idname = __name__
+
+    cloud_name: bpy.props.StringProperty(name="Cloud Name", default="")
+    api_key: bpy.props.StringProperty(name="API Key", default="")
+    api_secret: bpy.props.StringProperty(name="API Secret", default="", subtype='PASSWORD')
+
+    def draw(self, context):
+        layout = self.layout
+        layout.label(text="Enter Cloudinary API Credentials:")
+        layout.prop(self, "cloud_name")
+        layout.prop(self, "api_key")
+        layout.prop(self, "api_secret")
+
+# --- Scene Properties ---
+class CloudinarySettings(bpy.types.PropertyGroup):
+    output_format: bpy.props.EnumProperty(
+        name="Format",
+        items=[('png', "PNG", ""), ('jpg', "JPG", "")],
+        default='png'
+    )
+    target_width: bpy.props.IntProperty(name="Target Width", default=2048, min=0)
+    drop_target: bpy.props.StringProperty(name="Image Path", subtype='FILE_PATH')
+
+# --- Helper function to fetch preferences ---
+def get_prefs():
+    return bpy.context.preferences.addons[__name__].preferences
+
+# --- Operators ---
+class CLOUDINARY_OT_test_connection(bpy.types.Operator):
+    bl_idname = "image.cloudinary_test_connection"
+    bl_label = "Test Connection"
+
+    def execute(self, context):
+        p = get_prefs()
+        if not all([p.cloud_name, p.api_key, p.api_secret]):
+            self.report({'ERROR'}, "Missing credentials in Addon Preferences.")
+            return {'CANCELLED'}
+        try:
+            cloudinary.config(cloud_name=p.cloud_name, api_key=p.api_key, api_secret=p.api_secret, secure=True)
+            cloudinary.api.ping()
+            self.report({'INFO'}, "Connection Successful!")
+        except Exception as e:
+            self.report({'ERROR'}, f"Failed: {str(e)}")
+        return {'FINISHED'}
+
+class CLOUDINARY_OT_process_image(bpy.types.Operator):
+    bl_idname = "image.cloudinary_process_image"
+    bl_label = "Upscale This Image"
+    path_to_upload: bpy.props.StringProperty()
+
+    def execute(self, context):
+        p = get_prefs()
+        s = context.scene.cloudinary_tool_settings
+        
+        if not all([p.cloud_name, p.api_key, p.api_secret]):
+            self.report({'ERROR'}, "Configure API keys in Preferences first.")
+            return {'CANCELLED'}
+
+        cloudinary.config(cloud_name=p.cloud_name, api_key=p.api_key, api_secret=p.api_secret, secure=True)
+        abs_path = bpy.path.abspath(self.path_to_upload)
+
+        try:
+            upload_result = cloudinary.uploader.upload(abs_path)
+            public_id = upload_result["public_id"]
+            trans = [{"effect": "upscale"}]
+            if s.target_width > 0:
+                trans.append({"width": s.target_width, "crop": "scale"})
+            
+            upscaled_url, _ = cloudinary_url(public_id, transformation=trans, fetch_format=s.output_format, secure=True)
+            save_path = os.path.join(os.path.dirname(abs_path), f"upscaled_{public_id}.{s.output_format}")
+            urllib.request.urlretrieve(upscaled_url, save_path)
+            
+            new_img = bpy.data.images.load(save_path, check_existing=True)
+            for area in context.screen.areas:
+                if area.type == 'IMAGE_EDITOR':
+                    area.spaces.active.image = new_img
+            return {'FINISHED'}
+        except Exception as e:
+            self.report({'ERROR'}, f"Cloudinary error: {str(e)}")
+            return {'CANCELLED'}
+
+# --- UI Panel ---Loads into IMAGE Panel find the plugin there
+class CLOUDINARY_PT_panel(bpy.types.Panel):
+    bl_label = "Cloudinary AI Tools"
+    bl_idname = "CLOUDINARY_PT_panel"
+    bl_space_type = 'IMAGE_EDITOR'
+    bl_region_type = 'UI'
+    bl_category = "Cloudinary"
+
+    def draw(self, context):
+        layout = self.layout
+        s = context.scene.cloudinary_tool_settings
+        
+        layout.operator("image.cloudinary_test_connection", icon='WORLD')
+        layout.separator()
+        layout.prop(s, "target_width")
+        layout.prop(s, "output_format")
+        layout.prop(s, "drop_target")
+
+        if s.drop_target:
+            op = layout.operator("image.cloudinary_process_image", icon='EXPORT')
+            op.path_to_upload = s.drop_target
+
+# --- Registration ---
+classes = (
+    CloudinaryAddonPreferences,
+    CloudinarySettings,
+    CLOUDINARY_OT_test_connection,
+    CLOUDINARY_OT_process_image,
+    CLOUDINARY_PT_panel,
+)
+
+def register():
+    for cls in classes:
+        bpy.utils.register_class(cls)
+    bpy.types.Scene.cloudinary_tool_settings = bpy.props.PointerProperty(type=CloudinarySettings)
+
+def unregister():
+    for cls in reversed(classes):
+        bpy.utils.unregister_class(cls)
+    del bpy.types.Scene.cloudinary_tool_settings
+
+if __name__ == "__main__":
+    register()
