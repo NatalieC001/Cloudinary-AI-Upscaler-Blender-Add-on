@@ -1,6 +1,6 @@
 # Cloudinary AI Upscaler – Blender Add-on
 
-Cloudinary_SecureInstaller.py offers a more secure installer -  seprating out the password from scene (so you cant accidentally export your api passwords)
+Cloudinary_SecureInstaller.py offers a more secure installer -  seprating out the password from scene (so you cant accidentally export your api passwords if you share blender scenes)
 
 <img width="719" height="210" alt="image" src="https://github.com/user-attachments/assets/826afac2-65d2-4a93-98d4-a4a95a970943" />
 
