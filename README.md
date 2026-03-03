@@ -1,10 +1,16 @@
 # Cloudinary AI Upscaler – Blender Add-on
 
+Cloudinary_SecureInstaller.py offers a more secure installer -  seprating out the password from scene (so you cant accidentally export your api passwords)
+
+<img width="719" height="210" alt="image" src="https://github.com/user-attachments/assets/826afac2-65d2-4a93-98d4-a4a95a970943" />
+
+
 **Quickly upload images from Blender to Cloudinary and get an AI-upscaled version.**
 
 This add-on adds a simple panel in the **Image Editor** that lets you:
 
-<img width="447" height="358" alt="image" src="https://github.com/user-attachments/assets/3961c94c-7e6c-4eba-ab52-1132f992aafe" />
+<img width="484" height="360" alt="image" src="https://github.com/user-attachments/assets/64e38433-fcc5-458a-93d8-0a9d9b0a4125" />
+
 
 - Enter your Cloudinary credentials once
 - Drag & drop (or pick) any image file from your computer
@@ -14,8 +20,10 @@ This add-on adds a simple panel in the **Image Editor** that lets you:
 
 ## Features
 
+<img width="277" height="355" alt="image" src="https://github.com/user-attachments/assets/8083bd4d-8995-4826-b9b0-0222ddae77d1" />
+
 - N-panel tab in the **Image Editor** called **Cloudinary**
-- Secure input for Cloud Name, API Key, API Secret (hidden by default)
+- Secure input for Cloud Name, API Key, API Secret (hidden by default and kept sepperate as part of blender prefs not scene data)
 - **Test Connection** button to verify credentials
 - Drag-and-drop file field (or click to browse/pick file)
 - One-click **Upscale** button that appears once a file is selected
