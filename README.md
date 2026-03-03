@@ -75,8 +75,4 @@ The panel appears in the **Image Editor** sidebar (press **N** to show sidebar â
 
 - This software is provided as-is. Use this script at your own risk.
 
-
-
-Feel free to fork, modify, or use in any project.
-
-Made with frustration and coffee in Zurich.
+Enjoy and hopefully it helps :)
