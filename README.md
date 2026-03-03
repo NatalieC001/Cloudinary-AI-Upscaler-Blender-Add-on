@@ -36,13 +36,9 @@ The add-on automatically installs the `cloudinary` Python package into Blender's
 1. Copy the pythonscript into blenter text editor and run it
 
 2. In Blender:  
-   **Edit → Preferences → Add-ons → Install…**
-
-3. Select the downloaded `.zip` file → **Install Add-on**
-
-4. Search for **"Cloudinary AI Upscaler"** and enable it
-
-The panel appears in the **Image Editor** sidebar (press **N** to show sidebar → **Cloudinary** tab).
+   Open Text Editor. Click New to create a document.
+   Copy the Python script. Paste the text into the editor window.
+   Click Run Script in the header. This creates the Cloudinary panel in the 3D Viewport.
 
 ## Setup
 
