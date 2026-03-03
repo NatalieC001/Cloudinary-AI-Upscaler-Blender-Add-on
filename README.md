@@ -73,6 +73,8 @@ The panel appears in the **Image Editor** sidebar (press **N** to show sidebar â
 
 - Credentials are stored in the scene â€” **do not share .blend files** with credentials filled in.
 
+- This software is provided as-is. Use this script at your own risk.
+
 
 
 Feel free to fork, modify, or use in any project.
