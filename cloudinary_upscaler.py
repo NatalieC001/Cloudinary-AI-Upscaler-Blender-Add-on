@@ -1,3 +1,7 @@
+
+# Depricated for  the newer more secure Cloudinary_SecureInstaller.py loaded through plugins interface
+"""
+
 bl_info = {
     "name": "Cloudinary AI Upscaler",
     "author": "You",
@@ -288,3 +292,5 @@ def unregister():
 
 if __name__ == "__main__":
     register()
+
+"""
