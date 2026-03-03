@@ -6,8 +6,6 @@ This add-on adds a simple panel in the **Image Editor** that lets you:
 
 <img width="447" height="358" alt="image" src="https://github.com/user-attachments/assets/3961c94c-7e6c-4eba-ab52-1132f992aafe" />
 
-
-
 - Enter your Cloudinary credentials once
 - Drag & drop (or pick) any image file from your computer
 - Upload it to your Cloudinary account
@@ -35,8 +33,7 @@ The add-on automatically installs the `cloudinary` Python package into Blender's
 
 ## Installation
 
-1. Download this repository as ZIP  
-   (Code → Download ZIP – do **not** unzip it)
+1. Copy the pythonscript into blenter text editor and run it
 
 2. In Blender:  
    **Edit → Preferences → Add-ons → Install…**
@@ -62,30 +59,11 @@ The panel appears in the **Image Editor** sidebar (press **N** to show sidebar �
 
 ## Usage
 
-### Drag & Drop (recommended)
-
-1. In the **Cloudinary** panel find the field labeled  
-   **Drag & Drop Image Below:**
-
-2. Drag any image file (.png, .jpg, .exr, etc.) from your file explorer into that field  
-   (or click the field to open the file picker)
-
-3. Once the path appears, a button shows:  
-   **Upscale: yourfilename.png**
-
-4. Click it → the image uploads → AI upscale is applied → URL is copied to clipboard → browser opens the result
-
-### Using the Active Image (limited)
-
-If an image is loaded/visible in the **Image Editor** **and** it has a valid file path on disk (not packed, not a render result without save), a second button appears:
-
-**Upscale yourimagename**
-
-Clicking it works the same way — but only if `img.filepath` points to an existing file.
+<img width="784" height="1168" alt="image" src="https://github.com/user-attachments/assets/2bc7284e-10de-4253-b595-e56ba187b80f" />
 
 ## Important Notes
 
-- This add-on **requires** the image to exist as a real file on disk.  
+- This add-on **requires** the image to exist as a real file on disk not imbedded into the project.  
   Render results, packed images, or unsaved edits in the Image Editor will **not** work unless you first save them to disk.
 
 - Cloudinary's `e_upscale` effect is used (good for enlarging photos, textures, faces, etc.).  
