@@ -14,7 +14,7 @@ import subprocess
 import sys
 import urllib.request
 
-# --- Dependencies ---INSTALL AS A PLUGIN THROUGH EXTENSIONS Find it in the Image Panel
+# --- Dependencies ---INSTALL AS A PLUGIN THROUGH EXTENSIONS Find it in the Image Panel   Addons>Install from disk>
 def ensure_cloudinary_installed():
     try:
         import cloudinary
