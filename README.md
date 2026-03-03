@@ -11,14 +11,6 @@ This add-on adds a simple panel in the **Image Editor** that lets you:
 
 <img width="484" height="331" alt="image" src="https://github.com/user-attachments/assets/dcc03910-60ae-4602-91b6-9064fffef326" />
 
-
-
-- Enter your Cloudinary credentials once
-- Drag & drop (or pick) any image file from your computer
-- Upload it to your Cloudinary account
-- Automatically apply Cloudinary's AI upscale transformation
-- Copy the resulting upscaled URL to clipboard and open it in your browser
-
 ## Features
 
 <img width="277" height="355" alt="image" src="https://github.com/user-attachments/assets/8083bd4d-8995-4826-b9b0-0222ddae77d1" />
@@ -26,9 +18,8 @@ This add-on adds a simple panel in the **Image Editor** that lets you:
 - N-panel tab in the **Image Editor** called **Cloudinary**
 - Secure input for Cloud Name, API Key, API Secret (hidden by default and kept sepperate as part of blender prefs not scene data)
 - **Test Connection** button to verify credentials
-- Drag-and-drop file field (or click to browse/pick file)
+- Drag-and-drop file into Image* (or click to browse/pick file)
 - One-click **Upscale** button that appears once a file is selected
-- Optional button to upscale the **active image** if it has a valid filepath on disk
 - Uses Cloudinary transformations: `e_upscale`, `q_auto`, `f_auto`
 - Clears clipboard with the final upscaled URL and opens it automatically
 
