@@ -49,7 +49,7 @@ The panel appears in the **Image Editor** sidebar (press **N** to show sidebar �
 
 ## Setup
 
-1. Go to your Cloudinary dashboard[](https://cloudinary.com/console)  
+1. Go to your Cloudinary dashboard[](https://cloudinary.com/console)  or set one up https://cloudinary.com/
    Copy your **Cloud name**, **API Key**, and **API Secret**
 
 2. In Blender → Image Editor → N-panel → **Cloudinary** tab:
